@@ -1,13 +1,9 @@
 #!/bin/bash
 #SBATCH -N 1
-#SBATCH -t 00:05:00
+#SBATCH -t 00:10:00
 
-module load openmpi/gnu
-module load R/3.3.1
-module load eb
-module load intel/2016b
-module load fortran/intel
-module load mkl
+module load 2019 Anaconda3
+source activate my_root
 
 #export R_LIBS=$HOME/rpackages:$R_LIBS
 

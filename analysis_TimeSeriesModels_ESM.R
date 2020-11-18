@@ -1,6 +1,6 @@
 # jonashaslbeck@gmail.com; ryanoisin@gmail.com; July 2020
 
-# The code in this file reproduces all results in Section 4 on statistical 
+# The code in this file reproduces all results in Section 4
 # except a) the time-series plot in Figure 7 (see `plot_TimeSeriesData.R' instead)
 #        b) the fitting of the TVAR model, which is located in the separate folder /TVAR
 
@@ -52,8 +52,6 @@ n <- nrow(data)
 sc <- 1.1
 pdf("figures/FigureX_DescriptiveAndDataViz_ESM.pdf", width = 8*sc, height = 6*sc)
 
-n <- nrow(data)
-
 par(mar=par()$mar)
 
 # Set up layout
@@ -73,10 +71,10 @@ for(i in 1:4) {
 
 # Plot Scatter plots
 par(mar=c(5.1, 4.1, 2, 2.1))
-n_res <- 500 # should be 100
+n_res <- 100 # should be 100
 cex.lab <- 1.5
 
-Scatter2Heatplot(data[, 2], data[, 3], 
+Scatter2Heatplot(x = data[, 2], y = data[, 3], 
                  n_res = n_res,
                  xlim = c(0, 8), 
                  ylim = c(0, 8), 
@@ -455,25 +453,5 @@ plotGraphs(mat = t(phi2), edge.labels = t(round(tvar.coef$r2$phi,2)),
            edge.labels.cex = edge.labels.cex)
 
 dev.off()
-
-
-# --------- Plot HMM generated Data --------
-
-# Thin Time series for plotting
-short_scale <- (60*24*7*2)/90
-
-thinner <- 1:short_scale
-data_gen_thinned <- dataTVAR[thinner, ]
-data_gen_thinned <- cbind(rep(NA, nrow(data_gen_thinned)), data_gen_thinned)
-
-pdf("figures/Figure_APP_DataGen_TVAR_ESM_snap.pdf", width = 10, height = 4.5)
-plotRegimes2Weeks(data = data_gen_thinned, regimes = rep(NA, nrow(data_gen_thinned)), 
-                  cols_regimes = c("grey", "white"), 
-                  legend = TRUE, plot_regimes = FALSE,
-                  cex.lab = 1.5,
-                  line.lab = 2.25)
-dev.off()
-
-
 
 

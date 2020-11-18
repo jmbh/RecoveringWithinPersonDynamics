@@ -4,4 +4,4 @@ mkdir "$TMPDIR"/DESim/
 
 cd "$HOME"/DESim
 
-sbatch -a 1-900 submit_jobs.sh   
+sbatch -a 361 submit_jobs.sh

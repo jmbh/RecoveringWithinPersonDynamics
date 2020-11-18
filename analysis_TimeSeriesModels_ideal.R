@@ -520,5 +520,26 @@ plotGraphs(mat = t(phi2), edge.labels = t(round(tvar.coef$r2$phi,2)),
 
 dev.off()
 
+# --------- Plot TVAR generated Data --------
 
+set.seed(1)
+dataTVAR <- genData_TVAR(tvar.coef = tvar.coef, 
+                         n = 201600)
+
+# --------- Plot HMM generated Data --------
+
+# Thin Time series for plotting
+thin_scale <- 50 # every 50 time point
+thinner <- seq(1, nrow(dataTVAR), length = round(nrow(dataTVAR)) / thin_scale)
+data_gen_thinned <- dataTVAR[thinner, ]
+data_gen_thinned <- cbind(rep(NA, nrow(data_gen_thinned)), data_gen_thinned)
+
+sc <- .8
+pdf("figures/Figure_APP_DataGen_TVAR.pdf", width = 10, height = 5)
+plotRegimes2Weeks(data = data_gen_thinned, regimes = rep(NA, nrow(data_gen_thinned)), 
+                  cols_regimes = c("grey", "white"), 
+                  legend = TRUE, plot_regimes = FALSE,
+                  cex.lab = 1.5,
+                  line.lab = 2.25)
+dev.off()
 

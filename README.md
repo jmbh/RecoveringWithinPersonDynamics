@@ -26,7 +26,7 @@ This reproducibility archive allows to reproduce all results and figures of the 
     b) `tvar_est.RDS` contains the final model produced by `analysis_TVAR_fit.R`.
 
 
-### Section 4: Recovering Bistable Systems from ESM Data
+### Section 4: The problem of insufficient sampling frequency
 
 Generating the 1800 weeks of data with Euler's method in the same way as the original two week data above would have created a ~900GB file. To avoid this, we divide the 1800 weeks into 900 2-week chunks, which we ran on a cluster computer. The files run on the cluster and the output files are in the folder /generateESMdata:
 
@@ -41,5 +41,21 @@ Generating the 1800 weeks of data with Euler's method in the same way as the ori
     a) `analysis_TVAR_fit_ESM.R` produces the estimated TVAR model in Section 4.3. Note this analysis can take upwards of 9 hours to run.
     b) `tvar_est_ESM.RDS` contains the final model produced by `analysis_TVAR_fit_ESM.R`.
 
+### Appendix A: Predicted States for Mean Switching HMM for ESM timeseries
+
+1. `analysis_TimeSeriesModels_ideal.R` reproduces Figure 11
+
+### Appendix B: Continuous-Time VAR(1) Results
+
+1. `/CTVAR`
+    a) `firstorderSDE_ctsem_ideal.R` estimates the CT-VAR model from the ideal data and saves the results in `linearSDE_ideal.RDS`
+    b) `firstorderSDE_ctsem_ESM.R` estimates the CT-VAR model from the ESM data and saves the results in `linearSDE_ESM.RDS`
+2. `analysis_additional_appendices.R` loads the results of the CT-VAR estimation and creates Figures 12 and 13
+
+### Appendix C: Simulated Data from Estimated Time Series
+1. `analysis_TimeSeriesModels_ideal.R` reproduces Figures 14 and 15
+
+### Appendix D: Assumption Checking, Diagnostics and the Box Jenkins Approach
+1. `analysis_additional_appendices.R` reproduces Figures 16, 17 and 18
 
 
